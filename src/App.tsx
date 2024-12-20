@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
 import AnimatedCursor from "react-animated-cursor";
 
 import IndexPage from "@/pages/index";
@@ -16,10 +15,6 @@ function App() {
 
     return () => clearTimeout(timeoutId);
   }, []);
-
-  if (!isMounted) {
-    return <PageLoader isMounted />;
-  }
 
   return (
     <div className="dark:bg-[rgb(13, 13, 13)]">
@@ -61,9 +56,8 @@ function App() {
       />
       <Header openMenu={openMenu} setOpenMenu={setOpenMenu} />
       <Aside openMenu={openMenu} />
-      <Routes>
-        <Route element={<IndexPage />} path="/" />
-      </Routes>
+      <IndexPage />
+      <PageLoader isMounted={isMounted} />
     </div>
   );
 }
