@@ -2,7 +2,13 @@ import { useEffect, useState } from "react";
 import AnimatedCursor from "react-animated-cursor";
 
 import IndexPage from "@/pages/index";
-import { PageLoader, Particles, Header, Aside } from "@/components";
+import {
+  PageLoader,
+  Particles,
+  Header,
+  Aside,
+  BottomSides,
+} from "@/components";
 
 function App() {
   const [isMounted, setIsMounted] = useState<boolean>(false);
@@ -58,6 +64,7 @@ function App() {
       <Aside openMenu={openMenu} />
       <IndexPage />
       <PageLoader isMounted={isMounted} />
+      <BottomSides />
     </div>
   );
 }
