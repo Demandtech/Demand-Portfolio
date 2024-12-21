@@ -1,11 +1,26 @@
+import { Dispatch, SetStateAction } from "react";
 import { motion } from "framer-motion";
 
 import { GithubIcon, TwitterIcon, LinkedInIcon, EmailIcon } from "./Svgs";
 
-function Aside({ openMenu }: { openMenu: boolean }) {
+function Aside({
+  openMenu,
+  setOpenMenu,
+}: {
+  openMenu: boolean;
+  setOpenMenu: Dispatch<SetStateAction<boolean>>;
+}) {
   const backdropVariants = {
-    open: { opacity: 1, transition: { duration: 0.3, delay: 0.5 } },
-    closed: { opacity: 0, transition: { duration: 0.3, delay: 1.2 } },
+    open: {
+      opacity: 1,
+      visibility: "visible" as "visible",
+      transition: { duration: 0.3, delay: 0.5 },
+    },
+    closed: {
+      opacity: 0,
+      visibility: "hidden" as "hidden",
+      transition: { duration: 0.3, delay: 1.2 },
+    },
   };
 
   const asideVariants = {
@@ -64,6 +79,7 @@ function Aside({ openMenu }: { openMenu: boolean }) {
       transition: { duration: 0.3, delay: 1.7 },
     }),
   };
+
   const bottomParaVariants = {
     hidden: () => ({
       opacity: 0,
@@ -92,27 +108,33 @@ function Aside({ openMenu }: { openMenu: boolean }) {
   return (
     <motion.div
       animate={openMenu ? "open" : "closed"}
-      className="h-full w-full fixed top-0 left-0 bg-black/40"
+      className="h-full w-full fixed top-0 left-0 bg-bgprimary/40"
       initial="closed"
       variants={backdropVariants}
+      onClick={() => setOpenMenu(false)}
+      // style={{ display:openMenu ? "block" :  }}
     >
       <motion.aside
         animate={openMenu ? "open" : "closed"}
-        className="bg-black150 max-w-3xl h-full ml-auto w-full"
+        className="bg-bgsecondary max-w-3xl h-full ml-auto w-full"
         initial="closed"
+        role="button"
+        tabIndex={-1}
         variants={asideVariants}
+        onClick={(e) => e.stopPropagation()}
+        onKeyDown={(e) => e.stopPropagation()}
       >
         <div className="pt-20 md:pt-24 max-w-[80%] mx-auto flex flex-col items-center md:items-start">
           <motion.h3
             animate={openMenu ? "visible" : "hidden"}
-            className="text-3xl font-noto text-white/80 ml-2"
+            className="text-3xl font-noto text-primary/80 ml-2"
             initial="hidden"
             // transition={titleTransition}
             variants={titleVariants}
           >
             Meet Me
           </motion.h3>
-          <ul className="mt-8 text-white text-xl space-y-5 font-comic text-center">
+          <ul className="mt-8 text-primary text-xl space-y-5 font-comic text-center">
             {navList.map((item, index) => (
               <motion.li
                 key={index}
@@ -124,7 +146,7 @@ function Aside({ openMenu }: { openMenu: boolean }) {
                 whileHover="hover"
               >
                 <motion.span
-                  className="block bg-white h-[2px] mr-2"
+                  className="block bg-bgprimary h-[2px] mr-2"
                   variants={hoverVariants}
                 />
                 <span className="capitalize">{item}</span>
@@ -133,11 +155,11 @@ function Aside({ openMenu }: { openMenu: boolean }) {
           </ul>
           <motion.div
             animate={openMenu ? "visible" : "hidden"}
-            className="h-[1px] bg-white ml-2 my-8"
+            className="h-[1px] bg-primary ml-2 my-8"
             initial="hidden"
             variants={dividerVariants}
           />
-          <div className="text-center  gap-3 flex flex-col items-center w-full text-white">
+          <div className="text-center  gap-3 flex flex-col items-center w-full text-primary">
             <motion.h4
               animate={openMenu ? "visible" : "hidden"}
               className="text-4xl font-noto font-bold"
@@ -166,7 +188,7 @@ function Aside({ openMenu }: { openMenu: boolean }) {
                 rel="noreferrer"
                 target="_blank"
               >
-                <GithubIcon className="stroke-white/70" />
+                <GithubIcon className="stroke-primary/70" />
               </a>
               <a
                 className=""
@@ -174,7 +196,7 @@ function Aside({ openMenu }: { openMenu: boolean }) {
                 rel="noreferrer"
                 target="_blank"
               >
-                <TwitterIcon className="stroke-white/70" />
+                <TwitterIcon className="stroke-primary/70" />
               </a>
               <a
                 className=""
@@ -182,7 +204,7 @@ function Aside({ openMenu }: { openMenu: boolean }) {
                 rel="noreferrer"
                 target="_blank"
               >
-                <LinkedInIcon className="stroke-white/70" />
+                <LinkedInIcon className="stroke-primary/70" />
               </a>
               <a
                 className=""
@@ -190,7 +212,7 @@ function Aside({ openMenu }: { openMenu: boolean }) {
                 rel="noreferrer"
                 target="_blank"
               >
-                <EmailIcon className="stroke-white/70" />
+                <EmailIcon className="stroke-primary/70" />
               </a>
             </motion.div>
           </div>

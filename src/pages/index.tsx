@@ -1,5 +1,11 @@
+import { Hero, AboutMe, Projects } from "@/components";
+
 export default function IndexPage() {
   return (
-    <div className="text-white z-50 max-w-[90%] mx-auto mt-10">Home Page</div>
+    <div className="z-40 mx-auto mt-10">
+      <Hero />
+      <AboutMe />
+      <Projects />
+    </div>
   );
 }

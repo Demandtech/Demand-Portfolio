@@ -3,3 +3,7 @@ export { default as Particles } from "./Particles";
 export { default as Header } from "./Header";
 export { default as Aside } from "./Aside";
 export { default as BottomSides } from "./BottomSides";
+export { default as Modal } from "./Modal";
+export { default as Hero } from "./sections/Hero";
+export { default as AboutMe } from "./sections/MyStory";
+export { default as Projects } from "./sections/Projects";

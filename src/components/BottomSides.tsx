@@ -40,7 +40,7 @@ function BottomSides() {
               rel="noreferrer"
               target="_blank"
             >
-              <GithubIcon className="stroke-white/70" />
+              <GithubIcon className="stroke-primary/70" />
             </a>
             <a
               className=""
@@ -48,7 +48,7 @@ function BottomSides() {
               rel="noreferrer"
               target="_blank"
             >
-              <TwitterIcon className="stroke-white/70" />
+              <TwitterIcon className="stroke-primary/70" />
             </a>
             <a
               className=""
@@ -56,7 +56,7 @@ function BottomSides() {
               rel="noreferrer"
               target="_blank"
             >
-              <LinkedInIcon className="stroke-white/70" />
+              <LinkedInIcon className="stroke-primary/70" />
             </a>
             <a
               className=""
@@ -64,12 +64,12 @@ function BottomSides() {
               rel="noreferrer"
               target="_blank"
             >
-              <EmailIcon className="stroke-white/70" />
+              <EmailIcon className="stroke-primary/70" />
             </a>
           </motion.div>
           <motion.div
             animate="visible"
-            className="w-[1px] bg-white"
+            className="w-[1px] bg-primary"
             initial="hidden"
             variants={dividerVariants}
           />
@@ -82,7 +82,7 @@ function BottomSides() {
             variants={socialsVariants}
           >
             <a
-              className="font-comic text-white text-xl vertical-text"
+              className="font-comic text-primary/70 text-xl vertical-text"
               href="https://github.com/demandtech"
               rel="noreferrer"
               target="_blank"
@@ -92,7 +92,7 @@ function BottomSides() {
           </motion.div>
           <motion.div
             animate="visible"
-            className="w-[1px] bg-white"
+            className="w-[1px] bg-primary"
             initial="hidden"
             variants={dividerVariants}
           />

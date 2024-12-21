@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import AnimatedCursor from "react-animated-cursor";
+import { useDisclosure } from "@nextui-org/modal";
 
 import IndexPage from "@/pages/index";
 import {
@@ -8,11 +9,26 @@ import {
   Header,
   Aside,
   BottomSides,
+  Modal,
 } from "@/components";
 
 function App() {
   const [isMounted, setIsMounted] = useState<boolean>(false);
   const [openMenu, setOpenMenu] = useState<boolean>(false);
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if ((event.metaKey || event.ctrlKey) && event.key === "k") {
+        event.preventDefault();
+        onOpen();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [onOpen]);
 
   useEffect(() => {
     let timeoutId = setTimeout(() => {
@@ -23,15 +39,10 @@ function App() {
   }, []);
 
   return (
-    <div className="dark:bg-[rgb(13, 13, 13)]">
+    <div className="bg-bgprimary min-h-dvh">
       <Particles />
       <AnimatedCursor
         clickables={[
-          'input[type="text"]',
-          'input[type="email"]',
-          'input[type="number"]',
-          'input[type="submit"]',
-          'input[type="image"]',
           "label[for]",
           "select",
           "textarea",
@@ -39,14 +50,6 @@ function App() {
           ".link",
           {
             target: ".custom",
-            // options: {
-            //   innerSize: 12,
-            //   outerSize: 12,
-            //   color: "255, 255, 255",
-            //   outerAlpha: 0.3,
-            //   innerScale: 0.7,
-            //   outerScale: 5,
-            // },
           },
         ]}
         color="#ffffff"
@@ -60,11 +63,16 @@ function App() {
           background: "#ffffff",
         }}
       />
-      <Header openMenu={openMenu} setOpenMenu={setOpenMenu} />
-      <Aside openMenu={openMenu} />
+      <Header
+        openMenu={openMenu}
+        setOpenMenu={setOpenMenu}
+        setOpenModal={onOpen}
+      />
+      <Aside openMenu={openMenu} setOpenMenu={setOpenMenu} />
       <IndexPage />
       <PageLoader isMounted={isMounted} />
       <BottomSides />
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} />
     </div>
   );
 }

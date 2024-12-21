@@ -9,16 +9,19 @@ export default {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: ["class", "[data-theme='dark']"],
   theme: {
     extend: {
       colors: {
-        black100: "#1f1f1f",
-        black150: "rgb(31,31,31)",
-        black200: "rgb(13,13,13)",
+        bgprimary: "var(--bgprimary)",
+        bgsecondary: "var(--bgsecondary)",
+        primary: "var(--primary)",
+        secondary: "var(--secondary)",
       },
       fontFamily: {
         noto: ["Noto Serif JP", "serif"],
         comic: ["Comic Neue", "serif"],
+        inter: ["Inter", "serif"],
       },
     },
   },

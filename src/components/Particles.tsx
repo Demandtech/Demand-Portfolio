@@ -4,8 +4,11 @@ import { useEffect, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 
+import { useTheme } from "@/contexts/AppContext";
+
 export default function App() {
   const [init, setInit] = useState(false);
+  const { theme } = useTheme();
 
   useEffect(() => {
     initParticlesEngine(async (engine) => {
@@ -23,7 +26,7 @@ export default function App() {
           options={{
             background: {
               color: {
-                value: "rgb(13, 13, 13)",
+                value: theme === "light" ? " #ffffff" : "rgb(13, 13, 13)",
               },
             },
             fpsLimit: 120,
@@ -51,10 +54,10 @@ export default function App() {
             // },
             particles: {
               color: {
-                value: "#ffffff",
+                value: theme === "light" ? "rgb(13, 13, 13)" : "#ffffff",
               },
               links: {
-                color: "#ffffff",
+                color: theme === "light" ? "rgb(13, 13, 13)" : "#ffffff",
                 distance: 100,
                 enable: true,
                 opacity: 0.5,
@@ -75,7 +78,7 @@ export default function App() {
                   enable: true,
                   //   area: 800,
                 },
-                value: 10,
+                value: 20,
               },
               opacity: {
                 value: 0.8,
