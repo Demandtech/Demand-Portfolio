@@ -1,4 +1,5 @@
 import { nextui } from "@nextui-org/theme";
+import tailwindScrollbar from "tailwind-scrollbar";
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -27,5 +28,5 @@ export default {
     },
   },
   darkMode: "class",
-  plugins: [nextui(), require("tailwind-scrollbar")],
+  plugins: [nextui(), tailwindScrollbar()],
 };
