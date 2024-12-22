@@ -8,3 +8,4 @@ export { default as Hero } from "./sections/Hero";
 export { default as AboutMe } from "./sections/MyStory";
 export { default as Projects } from "./sections/Projects";
 export { default as Contact } from "./sections/Contact";
+export { default as Footer } from "./sections/Footer";

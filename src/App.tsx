@@ -10,6 +10,7 @@ import {
   Aside,
   BottomSides,
   Modal,
+  Footer,
 } from "@/components";
 
 function App() {
@@ -73,6 +74,7 @@ function App() {
       <PageLoader isMounted={isMounted} />
       <BottomSides />
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} />
+      <Footer />
     </div>
   );
 }

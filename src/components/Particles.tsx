@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 
-import { useTheme } from "@/contexts/AppContext";
+import { useTheme } from "@/contexts/ThemeContext";
 
 export default function App() {
   const [init, setInit] = useState(false);

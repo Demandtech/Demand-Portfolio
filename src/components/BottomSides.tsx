@@ -35,36 +35,36 @@ function BottomSides() {
             variants={socialsVariants}
           >
             <a
-              className=""
+              className="hover:opacity-65 transition-opacity"
               href="https://github.com/demandtech"
               rel="noreferrer"
               target="_blank"
             >
-              <GithubIcon className="stroke-primary/70" />
+              <GithubIcon className="stroke-accent" />
             </a>
             <a
-              className=""
+              className="hover:opacity-65 transition-opacity"
               href="https://x.com/ara_tuntun"
               rel="noreferrer"
               target="_blank"
             >
-              <TwitterIcon className="stroke-primary/70 fill-primary/70" />
+              <TwitterIcon className="fill-accent" />
             </a>
             <a
-              className=""
+              className="hover:opacity-65 transition-opacity"
               href="https://www.linkedin.com/in/demandwork"
               rel="noreferrer"
               target="_blank"
             >
-              <LinkedInIcon className="stroke-primary/70" />
+              <LinkedInIcon className="stroke-accent" />
             </a>
             <a
-              className=""
+              className="hover:opacity-65 transition-opacity"
               href="mailto:rasheedadekunle91@gmail.com"
               rel="noreferrer"
               target="_blank"
             >
-              <EmailIcon className="stroke-primary/70" />
+              <EmailIcon className="stroke-accent" />
             </a>
           </motion.div>
           <motion.div
@@ -82,7 +82,7 @@ function BottomSides() {
             variants={socialsVariants}
           >
             <a
-              className="font-comic text-primary/70 text-xl vertical-text"
+              className="font-comic text-accent text-xl vertical-text"
               href="https://github.com/demandtech"
               rel="noreferrer"
               target="_blank"

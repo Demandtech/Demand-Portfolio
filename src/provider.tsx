@@ -1,6 +1,6 @@
 import { NextUIProvider } from "@nextui-org/system";
 
-import { ThemeProvider } from "./contexts/AppContext";
+import { ThemeProvider } from "./contexts/ThemeContext";
 
 export function Provider({ children }: { children: React.ReactNode }) {
   return (

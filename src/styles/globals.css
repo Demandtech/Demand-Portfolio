@@ -3,19 +3,23 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --bgprimary: #ffffff;
-  --bgsecondary: #f5f5f5;
-  --primary: rgb(13, 13, 13);
-  --secondary: #737373;
-  --accent: #2e2d2d;
+html {
+  scroll-behavior: smooth;
 }
-[data-theme="dark"] {
-  --bgprimary: rgb(13, 13, 13);
-  --bgsecondary: #1f1f1f;
-  --primary: #ffffff;
-  --secondary: #636363;
-  --accent: #d1cfcf;
+
+:root {
+  --primary: 0 0% 5%;
+  --secondary: 0 0% 45%;
+  --accent: 0 1% 18%;
+  --bgprimary: 0 0% 100%;
+  --bgsecondary: 0 0% 96%;
+}
+.dark {
+  --primary: 0, 0%, 100%;
+  --secondary: 0 0% 39%;
+  --accent: 0 2% 82%;
+  --bgprimary: 0 0% 5%;
+  --bgsecondary: 0 0% 12%;
 }
 
 * {
@@ -23,8 +27,8 @@
   padding: 0;
   box-sizing: border-box;
   transition:
-    background-color 0.5s ease,
-    color 0.5s ease;
+    background-color 300ms ease,
+    color 300ms ease;
 }
 
 #menu-bar {

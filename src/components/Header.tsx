@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 import { MoonSvg, SunSvg } from "./Svgs";
 
-import { useTheme } from "@/contexts/AppContext";
+import { useTheme } from "@/contexts/ThemeContext";
 
 function Header({
   openMenu,
@@ -22,9 +22,9 @@ function Header({
   return (
     <header className="sticky top-0 z-50">
       <div className="flex items-center justify-between pt-5 lg:pt-10 max-w-[95%] lg:max-w-[90%] mx-auto">
-        <div className="text-primary uppercase leading-4 lg:leading-5 text-center lg:text-2xl font-noto backdrop-blur-sm">
-          <p>Demand</p>
-          <p className="">Tech</p>
+        <div className="uppercase leading-4 lg:leading-5 text-center lg:text-2xl font-noto backdrop-blur-sm">
+          <p className="text-primary">Demand</p>
+          <p className="text-primary">Tech</p>
         </div>
 
         <div className="flex items-center gap-5">

@@ -22,9 +22,10 @@ export function GithubIcon(props: IconSvgProps) {
 export function TwitterIcon(props: IconSvgProps) {
   return (
     <svg
-      className="mt-px h-5 w-5 fill-neutral-500 transition hover:fill-neutral-600 dark:fill-neutral-500 dark:hover:fill-neutral-400"
+      height="24"
       role="img"
       viewBox="0 0 24 24"
+      width="24"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
