@@ -78,7 +78,7 @@ function App() {
         setOpenModal={onOpen}
       />
       <Aside openMenu={openMenu} setOpenMenu={setOpenMenu} />
-      <IndexPage />
+      <IndexPage onOpen={onOpen} />
       <PageLoader isMounted={isMounted} />
       <BottomSides />
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} />

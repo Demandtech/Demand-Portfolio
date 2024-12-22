@@ -1,4 +1,4 @@
-import { GithubIcon, TwitterIcon } from "../Svgs";
+import { GithubIcon, TwitterIcon } from "./Svgs";
 
 function Footer() {
   return (
