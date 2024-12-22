@@ -48,7 +48,7 @@ function BottomSides() {
               rel="noreferrer"
               target="_blank"
             >
-              <TwitterIcon className="stroke-primary/70" />
+              <TwitterIcon className="stroke-primary/70 fill-primary/70" />
             </a>
             <a
               className=""
