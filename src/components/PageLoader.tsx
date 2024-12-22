@@ -20,7 +20,7 @@ function PageLoader({ isMounted }: { isMounted: boolean }) {
     >
       <motion.div
         animate={{ opacity: isMounted ? 0 : 1, y: isMounted ? 10 : 0 }}
-        className="text-primary leading-5 text-center text-2xl font-noto uppercase"
+        className="text-accent leading-5 text-center text-2xl font-noto uppercase"
         initial={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, duration: 0.5, ease: "easeInOut" }}
       >

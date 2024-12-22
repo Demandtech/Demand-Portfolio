@@ -11,7 +11,7 @@ export default function MyStory() {
               About <br /> Me
             </h2>
           </div>
-          <div className="font-comic font-[300] text-lg md:text-2xl max-w-[1040px] flex flex-col gap-10">
+          <div className="text-primary font-comic font-[300] text-lg md:text-2xl max-w-[1040px] flex flex-col gap-10">
             <p>
               I am Rasheed, a results-driven software developer with{" "}
               {now.getFullYear() - startYear.getFullYear()}+ years of experience

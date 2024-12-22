@@ -7,7 +7,8 @@ export default {
     "./src/layouts/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
+    // "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@nextui-org/theme/dist/components/(button|code|input|kbd|modal|image).js",
   ],
   darkMode: ["class", "[data-theme='dark']"],
   theme: {
@@ -17,6 +18,7 @@ export default {
         bgsecondary: "var(--bgsecondary)",
         primary: "var(--primary)",
         secondary: "var(--secondary)",
+        accent: "var(--accent)",
       },
       fontFamily: {
         noto: ["Noto Serif JP", "serif"],

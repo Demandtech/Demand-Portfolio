@@ -83,10 +83,10 @@ export function EmailIcon(props: IconSvgProps) {
   );
 }
 
-export function MoonSvg() {
+export function MoonSvg(props: IconSvgProps) {
   return (
     <svg
-      className="lucide lucide-sun h-5 w-5 rotate-0 scale-100 text-neutral-950 transition-all duration-300 dark:-rotate-90 dark:scale-0 dark:text-neutral-50"
+      className="text-neutral-950"
       fill="none"
       height="20"
       stroke="currentColor"
@@ -96,6 +96,7 @@ export function MoonSvg() {
       viewBox="0 0 24 24"
       width="20"
       xmlns="http://www.w3.org/2000/svg"
+      {...props}
     >
       <circle cx="12" cy="12" r="4" />
       <path d="M12 2v2" />
@@ -110,10 +111,9 @@ export function MoonSvg() {
   );
 }
 
-export function SunSvg() {
+export function SunSvg(props: IconSvgProps) {
   return (
     <svg
-      // className="lucide lucide-moon absolute h-5 w-5 rotate-90 scale-0 text-white transition-all duration-300 dark:rotate-0 dark:scale-100"
       fill="none"
       height="20"
       stroke="white"
@@ -123,8 +123,61 @@ export function SunSvg() {
       viewBox="0 0 24 24"
       width="20"
       xmlns="http://www.w3.org/2000/svg"
+      {...props}
     >
       <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+    </svg>
+  );
+}
+
+export function AnchorSvg(props: IconSvgProps) {
+  return (
+    <svg
+      height="30px"
+      strokeWidth="0.5"
+      viewBox="0 0 24 24"
+      width="30px"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <g id="SVGRepo_bgCarrier" strokeWidth="0" />
+
+      <g
+        id="SVGRepo_tracerCarrier"
+        stroke="#CCCCCC"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="0.096"
+      />
+
+      <g id="SVGRepo_iconCarrier">
+        <path d="M15.5 2.25a.75.75 0 01.75-.75h5.5a.75.75 0 01.75.75v5.5a.75.75 0 01-1.5 0V4.06l-6.22 6.22a.75.75 0 11-1.06-1.06L19.94 3h-3.69a.75.75 0 01-.75-.75z" />
+
+        <path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 010 1.5h-8.5a.25.25 0 00-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 00.25-.25v-8.5a.75.75 0 011.5 0v8.5a1.75 1.75 0 01-1.75 1.75H4.25a1.75 1.75 0 01-1.75-1.75V4.25z" />
+      </g>
+    </svg>
+  );
+}
+
+export function FlowerSvg(props: IconSvgProps) {
+  return (
+    <svg
+      className="lucide lucide-sprout h-5 w-5 text-primary"
+      fill="none"
+      height="24"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      viewBox="0 0 24 24"
+      width="24"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path d="M7 20h10" />
+      <path d="M10 20c5.5-2.5.8-6.4 3-10" />
+      <path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z" />
+      <path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z" />
     </svg>
   );
 }

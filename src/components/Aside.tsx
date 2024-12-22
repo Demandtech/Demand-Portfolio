@@ -108,7 +108,7 @@ function Aside({
   return (
     <motion.div
       animate={openMenu ? "open" : "closed"}
-      className="h-full w-full fixed top-0 left-0 bg-bgprimary/40"
+      className="h-full w-full fixed top-0 left-0 bg-bgprimary/40 z-40"
       initial="closed"
       variants={backdropVariants}
       onClick={() => setOpenMenu(false)}

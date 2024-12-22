@@ -20,19 +20,15 @@ function Header({
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <header className="">
+    <header className="sticky top-0 z-50">
       <div className="flex items-center justify-between pt-5 lg:pt-10 max-w-[95%] lg:max-w-[90%] mx-auto">
-        <div className="text-primary uppercase leading-4 lg:leading-5 text-center lg:text-2xl font-noto">
+        <div className="text-primary uppercase leading-4 lg:leading-5 text-center lg:text-2xl font-noto backdrop-blur-sm">
           <p>Demand</p>
           <p className="">Tech</p>
         </div>
 
         <div className="flex items-center gap-5">
-          <Button
-            isIconOnly
-            className="bg-bgsecondary z-50"
-            onClick={toggleTheme}
-          >
+          <Button isIconOnly className="bg-bgsecondary" onClick={toggleTheme}>
             <motion.div
               animate={{ rotate: theme === "light" ? 80 : 0 }}
               initial={{ rotate: 0 }}

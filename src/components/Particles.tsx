@@ -78,7 +78,7 @@ export default function App() {
                   enable: true,
                   //   area: 800,
                 },
-                value: 20,
+                value: 15,
               },
               opacity: {
                 value: 0.8,

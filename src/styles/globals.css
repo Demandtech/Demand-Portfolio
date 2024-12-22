@@ -7,13 +7,15 @@
   --bgprimary: #ffffff;
   --bgsecondary: #f5f5f5;
   --primary: rgb(13, 13, 13);
-  --secondary: #1f1f1fab;
+  --secondary: #737373;
+  --accent: #2e2d2d;
 }
 [data-theme="dark"] {
   --bgprimary: rgb(13, 13, 13);
   --bgsecondary: #1f1f1f;
   --primary: #ffffff;
-  --secondary: #f5f5f55e;
+  --secondary: #636363;
+  --accent: #d1cfcf;
 }
 
 * {

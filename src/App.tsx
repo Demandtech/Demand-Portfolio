@@ -39,7 +39,7 @@ function App() {
   }, []);
 
   return (
-    <div className="bg-bgprimary min-h-dvh">
+    <div className="min-h-dvh">
       <Particles />
       <AnimatedCursor
         clickables={[
