@@ -13,8 +13,6 @@ export default function MyStory() {
     yearDifference--;
   }
 
-  console.log(yearDifference);
-
   return (
     <section className="mt-10 pb-10" id="about">
       <div className="w-full lg:max-w-[90%] mx-auto bg-bgsecondary py-12">
@@ -27,12 +25,11 @@ export default function MyStory() {
           <div className="text-primary font-comic font-[300] text-lg md:text-2xl max-w-[1040px] flex flex-col gap-10">
             <p>
               I am Rasheed, a results-driven software developer with{" "}
-              {now.getFullYear() - startDate.getFullYear()}+ years of experience
-              designing and delivering scalable, high-performance web
-              applications that drive exceptional user experiences for
-              businesses and startups globally. I am actively exploring new
-              opportunities where I can contribute my skills and enthusiasm,
-              don&apos;t hesitate to reach out!
+              {yearDifference}+ years of experience designing and delivering
+              scalable, high-performance web applications that drive exceptional
+              user experiences for businesses and startups globally. I am
+              actively exploring new opportunities where I can contribute my
+              skills and enthusiasm, don&apos;t hesitate to reach out!
             </p>
             <div>
               <p>My core technologies:</p>
