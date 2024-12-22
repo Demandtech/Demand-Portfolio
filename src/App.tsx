@@ -39,6 +39,14 @@ function App() {
     return () => clearTimeout(timeoutId);
   }, []);
 
+  useEffect(() => {
+    if (openMenu) {
+      document.documentElement.style.overflow = "hidden";
+    } else {
+      document.documentElement.style.overflow = "auto";
+    }
+  }, [openMenu]);
+
   return (
     <div className="min-h-dvh">
       <Particles />

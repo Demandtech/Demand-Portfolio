@@ -4,7 +4,7 @@ import { FlowerSvg } from "../Svgs";
 
 function Contact() {
   return (
-    <section className="mb-10" id="projects">
+    <section className="mb-10" id="contact">
       <div className="w-full lg:max-w-[90%] mx-auto py-12 px-3">
         <div className="max-w-[800px] px-[20px] lg:px-[30px] mx-auto border rounded-3xl  py-10 bg-bgsecondary">
           <div className="lg:max-w-[50%] mx-auto text-center flex flex-col items-center gap-8">

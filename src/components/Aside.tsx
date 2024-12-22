@@ -105,14 +105,22 @@ function Aside({
     }),
   };
 
+  const handleScrollToSection = (section: string) => {
+    const sectionElement = document.getElementById(section);
+
+    if (!sectionElement) return;
+
+    sectionElement.scrollIntoView();
+    setOpenMenu(false);
+  };
+
   return (
     <motion.div
       animate={openMenu ? "open" : "closed"}
-      className="h-full w-full fixed top-0 left-0 bg-bgprimary/40 z-40"
+      className="h-full w-full fixed top-0 left-0 bg-bgprimary/40 z-[60]"
       initial="closed"
       variants={backdropVariants}
       onClick={() => setOpenMenu(false)}
-      // style={{ display:openMenu ? "block" :  }}
     >
       <motion.aside
         animate={openMenu ? "open" : "closed"}
@@ -124,7 +132,7 @@ function Aside({
         onClick={(e) => e.stopPropagation()}
         onKeyDown={(e) => e.stopPropagation()}
       >
-        <div className="pt-20 md:pt-24 max-w-[80%] mx-auto flex flex-col items-center md:items-start">
+        <div className="pt-24 md:pt-32 max-w-[80%] mx-auto flex flex-col items-center md:items-start">
           <motion.h3
             animate={openMenu ? "visible" : "hidden"}
             className="text-3xl font-noto text-primary/80 ml-2"
@@ -135,7 +143,7 @@ function Aside({
             Meet Me
           </motion.h3>
           <ul className="mt-8 text-primary text-xl space-y-5 font-comic text-center">
-            {navList.map((item, index) => (
+            {navList.map((item: { name: string; href: string }, index) => (
               <motion.li
                 key={index}
                 animate={openMenu ? "visible" : "hidden"}
@@ -144,14 +152,29 @@ function Aside({
                 initial="hidden"
                 variants={navItemVariants}
                 whileHover="hover"
+                onClick={() => handleScrollToSection(item.href)}
               >
                 <motion.span
-                  className="block bg-bgprimary h-[2px] mr-2"
+                  className="block bg-primary h-[2px] mr-2"
                   variants={hoverVariants}
                 />
-                <span className="capitalize">{item}</span>
+                <span className="capitalize">{item.name}</span>
               </motion.li>
             ))}
+            <motion.li
+              animate={openMenu ? "visible" : "hidden"}
+              className="justify-center md:justify-start group flex items-center cursor-pointer transition-all duration-300 ease-linear"
+              custom={navList.length}
+              initial="hidden"
+              variants={navItemVariants}
+              whileHover="hover"
+            >
+              <motion.span
+                className="block bg-primary h-[2px] mr-2"
+                variants={hoverVariants}
+              />
+              <span className="capitalize">My Resume</span>
+            </motion.li>
           </ul>
           <motion.div
             animate={openMenu ? "visible" : "hidden"}
@@ -224,4 +247,9 @@ function Aside({
 
 export default Aside;
 
-const navList = ["My Projects", "my story", "Testimomials", "my resume"];
+const navList = [
+  { name: "My Projects", href: "projects" },
+  { name: "About me", href: "about" },
+  { name: "Contact", href: "contact" },
+  // "my resume",
+];

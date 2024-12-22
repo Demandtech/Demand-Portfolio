@@ -16,7 +16,7 @@ function Projects() {
               Each one is unique. Take a look.
             </p>
           </div>
-          <div className="flex flex-col gap-10 lg:gap-14">
+          <div className="flex flex-col gap-14 lg:gap-20">
             {projects.map((project, index) => (
               <ProjectCard key={index} project={{ ...project, index }} />
             ))}

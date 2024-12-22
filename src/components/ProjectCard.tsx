@@ -3,8 +3,10 @@ import { motion, useInView } from "framer-motion";
 
 import { AnchorSvg } from "./Svgs";
 
+import { useTheme } from "@/contexts/ThemeContext";
+
 const LazyImage = lazy(() =>
-  import("@nextui-org/image").then((module) => ({ default: module.Image })),
+  import("@nextui-org/image").then((module) => ({ default: module.Image }))
 );
 
 export default function ProjectCard({
@@ -18,10 +20,12 @@ export default function ProjectCard({
     tools: string;
     repo_url?: string;
     image: string;
+    light_img: string | null;
   };
 }) {
   const cardRef = useRef(null);
   const isInVieww = useInView(cardRef, { once: true });
+  const { theme } = useTheme();
 
   const cardVariants = {
     initial: {
@@ -49,15 +53,29 @@ export default function ProjectCard({
       >
         <div className="absolute top-0 left-0 bg-[#00000034] w-full h-full z-50" />
         <Suspense fallback="Loading...">
-          <LazyImage
-            className="object-cover"
-            classNames={{
-              img: "object-contain",
-            }}
-            radius="none"
-            src={project.image}
-            width={"100%"}
-          />
+          <motion.div
+            key={theme}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.3 }}
+          >
+            <LazyImage
+              className="object-cover"
+              classNames={{
+                img: "object-contain",
+              }}
+              radius="none"
+              src={
+                theme === "dark"
+                  ? project.image
+                  : project.light_img
+                    ? project.light_img
+                    : project.image
+              }
+              width={"100%"}
+            />
+          </motion.div>
         </Suspense>
       </motion.div>
       <motion.div

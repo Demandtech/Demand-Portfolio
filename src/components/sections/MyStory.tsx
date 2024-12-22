@@ -1,6 +1,19 @@
 export default function MyStory() {
-  const startYear = new Date("00-00-2022");
+  const startDate = new Date("03-22-2022");
   const now = new Date();
+
+  let yearDifference = now.getFullYear() - startDate.getFullYear();
+
+  const hasNotReachedAnniversary =
+    now.getMonth() < startDate.getMonth() ||
+    (now.getMonth() === startDate.getMonth() &&
+      now.getDate() < startDate.getDate());
+
+  if (hasNotReachedAnniversary) {
+    yearDifference--;
+  }
+
+  console.log(yearDifference);
 
   return (
     <section className="mt-10 pb-10" id="about">
@@ -14,7 +27,7 @@ export default function MyStory() {
           <div className="text-primary font-comic font-[300] text-lg md:text-2xl max-w-[1040px] flex flex-col gap-10">
             <p>
               I am Rasheed, a results-driven software developer with{" "}
-              {now.getFullYear() - startYear.getFullYear()}+ years of experience
+              {now.getFullYear() - startDate.getFullYear()}+ years of experience
               designing and delivering scalable, high-performance web
               applications that drive exceptional user experiences for
               businesses and startups globally. I am actively exploring new
