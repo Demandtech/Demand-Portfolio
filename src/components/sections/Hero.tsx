@@ -2,6 +2,8 @@ import { Button } from "@nextui-org/button";
 import { motion } from "framer-motion";
 import { useRef } from "react";
 
+import { DownloadIcon } from "../Svgs";
+
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -34,9 +36,19 @@ export default function Hero() {
           >
             <Button
               aria-label="Download Resume"
-              className="bg-primary text-bgprimary"
+              className="transition duration-300 bg-primary  group hover:opacity-70"
             >
-              Download CV
+              <div className="flex items-center">
+                <span className="text-bgprimary">Download CV </span>
+                <span className="h-[14px] w-[14px] ml-4 overflow-hidden">
+                  <div>
+                    <DownloadIcon className="transition duration-300 group-hover:-translate-y-full fill-bgprimary" />
+                  </div>
+                  <div>
+                    <DownloadIcon className="transition duration-300 group-hover:-translate-y-full fill-bgprimary" />
+                  </div>
+                </span>
+              </div>
             </Button>
             <motion.p
               animate={{ y: 0, opacity: 1 }}

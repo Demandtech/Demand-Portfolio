@@ -36,10 +36,11 @@ function Header({
             transition={{ duration: 0.2, ease: "easeInOut" }}
           >
             <Button
-              radius="full"
               isIconOnly
               className="bg-bgsecondary"
+              radius="full"
               onClick={toggleTheme}
+              onPress={toggleTheme}
             >
               {theme === "light" ? <MoonSvg /> : <SunSvg />}
             </Button>

@@ -2,8 +2,9 @@ import { Button } from "@nextui-org/button";
 
 import { projects } from "../../data";
 import ProjectCard from "../ProjectCard";
+import { ArrowRight } from "../Svgs";
 
-function Projects() {
+function Projects({ onOpen }: { onOpen: any }) {
   return (
     <section className="mb-10 pt-10" id="projects">
       <div className="w-full lg:max-w-[90%] mx-auto py-12">
@@ -23,14 +24,29 @@ function Projects() {
           </div>
         </div>
         <div className="mt-14 flex justify-center">
-          <Button
-            className="text-primary"
-            color="primary"
-            size="lg"
-            variant="light"
-          >
-            Explore more Projects
-          </Button>
+          <div>
+            <Button
+              aria-label="explore more projects"
+              className="text-primary group max-w-[500px]"
+              color="primary"
+              size="lg"
+              type="button"
+              variant="light"
+              onPress={onOpen}
+            >
+              <div className="flex">
+                <span>Explore more Projects</span>
+                <div className="flex w-[24px] ml-5 overflow-hidden">
+                  <div>
+                    <ArrowRight className="group-hover:-translate-x-full transition duration-300" />
+                  </div>
+                  <div>
+                    <ArrowRight className="group-hover:-translate-x-full transition duration-300" />
+                  </div>
+                </div>
+              </div>
+            </Button>
+          </div>
         </div>
       </div>
     </section>
