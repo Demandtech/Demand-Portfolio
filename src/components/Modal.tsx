@@ -1,12 +1,12 @@
-import React from "react";
-import {
-  Modal,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  useDraggable,
-} from "@nextui-org/modal";
+import { Key, useEffect, useRef, useState } from "react";
+import { Modal, ModalContent, ModalHeader, ModalBody } from "@nextui-org/modal";
 import { Input } from "@nextui-org/input";
+import { Tabs, Tab } from "@nextui-org/tabs";
+
+import Repos from "./Repos";
+
+import useGithub from "@/hooks/useGithub";
+import { RepositoryListType, PaginateProps } from "@/types/index";
 
 interface ModalProps {
   isOpen: boolean;
@@ -14,22 +14,51 @@ interface ModalProps {
 }
 
 export default function App({ isOpen, onOpenChange }: ModalProps) {
-  const targetRef = React.useRef(null);
-  const { moveProps } = useDraggable({
-    targetRef,
-    canOverflow: true,
-    isDisabled: !isOpen,
+  const targetRef = useRef(null);
+  const { getAllRepositories, isLoading } = useGithub();
+  const [projects, setProjects] = useState<RepositoryListType>([]);
+  const [selectedLanguage, setSelectedLanguage] =
+    useState<string>("TypeScript");
+  const [paginate, setPaginate] = useState<PaginateProps>({
+    page: 1,
+    limit: 5,
+    total_page: 0,
   });
+
+  async function getRepositories(limit: number, lang: string, page: number) {
+    const { repos, total_page } = await getAllRepositories(limit, lang, page);
+
+    setProjects((prev) => {
+      const repoIds = new Set(prev.map((repo) => repo.id));
+      const uniqueNewRepos = repos.filter((repo) => !repoIds.has(repo.id));
+
+      return [...prev, ...uniqueNewRepos];
+    });
+
+    setPaginate((prev) => ({ ...prev, total_page }));
+  }
+
+  function handleSelectionChange(key: Key) {
+    setPaginate((prev) => ({ ...prev, page: 1 }));
+    setProjects([]);
+    setSelectedLanguage(key as string);
+  }
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    getRepositories(paginate.limit, selectedLanguage, paginate.page);
+  }, [selectedLanguage, isOpen, paginate.page]);
 
   return (
     <>
       <Modal
         ref={targetRef}
-        className="bg-bgsecondary rounded-md"
+        className="bg-bgsecondary rounded-md h-full max-h-[450px] max-w-[500px] border border-white dark:border-[#2b2b2b] overflow-hidden"
         classNames={{
-          backdrop: "blur-sm",
+          backdrop: "blur-sm z-[80]",
           closeButton: "mt-2 text-3xl",
-          wrapper: "rounded-sm",
+          wrapper: "rounded-sm z-[90]",
         }}
         isOpen={isOpen}
         motionProps={{
@@ -52,15 +81,14 @@ export default function App({ isOpen, onOpenChange }: ModalProps) {
             },
           },
         }}
+        scrollBehavior="inside"
+        size="lg"
         onOpenChange={onOpenChange}
       >
         <ModalContent>
           {() => (
             <>
-              <ModalHeader
-                {...moveProps}
-                className="flex flex-col gap-1 border-b border-gray-600"
-              >
+              <ModalHeader className="flex flex-col gap-1 border-b border-white dark:border-[#2b2b2b]">
                 <Input
                   className="max-w-[79%]"
                   classNames={{
@@ -69,21 +97,42 @@ export default function App({ isOpen, onOpenChange }: ModalProps) {
                   placeholder="Search..."
                 />
               </ModalHeader>
-              <ModalBody>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nullam pulvinar risus non risus hendrerit venenatis.
-                  Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                </p>
+              <ModalBody className="px-0 mx-0 py-0">
+                <Tabs
+                  aria-label="Public github repositories"
+                  className="mt-2 sticky-0 px-5"
+                  classNames={{
+                    panel: "px-0 py-0",
+                    tabList: "sticky top-0",
+                    tab: "data-[disabled=true]:opacity-70",
+                  }}
+                  defaultSelectedKey={undefined}
+                  isDisabled={isLoading}
+                  items={languages}
+                  selectedKey={selectedLanguage}
+                  size="sm"
+                  onSelectionChange={(key) => handleSelectionChange(key)}
+                >
+                  {languages.map((item) => (
+                    <Tab
+                      key={item.label}
+                      aria-disabled={isLoading}
+                      title={
+                        <div className="flex items-center space-x-2">
+                          <span>{item.label}</span>
+                        </div>
+                      }
+                    >
+                      <Repos
+                        isLoading={isLoading}
+                        paginate={paginate}
+                        repositories={projects}
+                        setPaginate={setPaginate}
+                      />
+                    </Tab>
+                  ))}
+                </Tabs>
               </ModalBody>
-              {/* <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose}>
-                  Close
-                </Button>
-                <Button color="primary" onPress={onClose}>
-                  Action
-                </Button>
-              </ModalFooter> */}
             </>
           )}
         </ModalContent>
@@ -91,3 +140,10 @@ export default function App({ isOpen, onOpenChange }: ModalProps) {
     </>
   );
 }
+
+const languages: { label: string }[] = [
+  { label: "TypeScript" },
+  { label: "JavaScript" },
+  { label: "Python" },
+  { label: "PHP" },
+];

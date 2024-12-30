@@ -8,7 +8,7 @@ export default {
     "./src/layouts/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./node_modules/@nextui-org/theme/dist/components/(button|code|input|kbd|modal|image).js",
+    "./node_modules/@nextui-org/theme/dist/components/(button|code|dropdown|image|input|kbd|link|modal|navbar|skeleton|snippet|spinner|toggle|tabs|ripple|menu|divider|popover|form).js",
   ],
   darkMode: ["class"],
   theme: {
