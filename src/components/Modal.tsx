@@ -7,17 +7,22 @@ import Repos from "./Repos";
 
 import useGithub from "@/hooks/useGithub";
 import { RepositoryListType, PaginateProps } from "@/types/index";
+import { getQueryParameter, setQueryParameter } from "@/helpers";
 
 interface ModalProps {
   isOpen: boolean;
   onOpenChange: (isOpen: boolean) => void;
+  onClose: () => void;
 }
 
-export default function App({ isOpen, onOpenChange }: ModalProps) {
+export default function App({ isOpen, onOpenChange, onClose }: ModalProps) {
   const targetRef = useRef(null);
+  const defaultLanguage =
+    getQueryParameter("selected-language") || "TypeScript";
   const { getAllRepositories, isLoading } = useGithub();
   const [projects, setProjects] = useState<RepositoryListType>([]);
-  const [selectedLanguage, setSelectedLanguage] = useState<string>("");
+  const [selectedLanguage, setSelectedLanguage] =
+    useState<string>(defaultLanguage);
   const [paginate, setPaginate] = useState<PaginateProps>({
     page: 1,
     limit: 5,
@@ -46,6 +51,7 @@ export default function App({ isOpen, onOpenChange }: ModalProps) {
     setPaginate((prev) => ({ ...prev, page: 1 }));
     setProjects([]);
     setSelectedLanguage(key as string);
+    setQueryParameter("selected-language", key as string);
   }
 
   useEffect(() => {
@@ -87,6 +93,7 @@ export default function App({ isOpen, onOpenChange }: ModalProps) {
         }}
         scrollBehavior="inside"
         size="lg"
+        onClose={onClose}
         onOpenChange={onOpenChange}
       >
         <ModalContent>
@@ -110,7 +117,7 @@ export default function App({ isOpen, onOpenChange }: ModalProps) {
                     tabList: "sticky top-0",
                     tab: "data-[disabled=true]:opacity-70",
                   }}
-                  defaultSelectedKey={undefined}
+                  defaultSelectedKey={selectedLanguage}
                   isDisabled={isLoading}
                   items={languages}
                   selectedKey={selectedLanguage}

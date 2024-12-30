@@ -12,11 +12,17 @@ import {
   Modal,
   Footer,
 } from "@/components";
+import {
+  deleteQueryParameter,
+  setQueryParameter,
+  getQueryParameter,
+} from "@/helpers";
 
 function App() {
   const [isMounted, setIsMounted] = useState<boolean>(false);
   const [openMenu, setOpenMenu] = useState<boolean>(false);
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
+  const isModalOpen = getQueryParameter("modal");
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -27,6 +33,10 @@ function App() {
     };
 
     window.addEventListener("keydown", handleKeyDown);
+
+    if (isModalOpen === "true") {
+      onOpen();
+    }
 
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [onOpen]);
@@ -46,6 +56,14 @@ function App() {
       document.documentElement.style.overflow = "auto";
     }
   }, [openMenu]);
+
+  useEffect(() => {
+    if (isOpen) {
+      setQueryParameter("modal", `${isOpen}`);
+    } else {
+      deleteQueryParameter("modal");
+    }
+  }, [isOpen]);
 
   return (
     <div className="min-h-dvh">
@@ -81,7 +99,14 @@ function App() {
       <IndexPage onOpen={onOpen} />
       <PageLoader isMounted={isMounted} />
       <BottomSides />
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} />
+      <Modal
+        isOpen={isOpen}
+        onClose={() => {
+          onClose();
+          deleteQueryParameter("selected-language");
+        }}
+        onOpenChange={onOpenChange}
+      />
       <Footer />
     </div>
   );
