@@ -45,12 +45,14 @@ export default function useGithub() {
 
   function filterRepositories(
     repos: RepositoryListType,
-    language: string
+    language: string,
+    search: string
   ): RepositoryListType {
     return repos.filter(
       (repo) =>
         repo.language?.toLowerCase() === language.toLowerCase() &&
-        repo.languages.length > 0
+        repo.languages.length > 0 &&
+        repo.name.toLowerCase().includes(search.toLowerCase())
     );
   }
 
@@ -104,14 +106,15 @@ export default function useGithub() {
   async function getAllRepositories(
     limit: number,
     selectedLanguage: string = "typescript",
-    page: number
+    page: number,
+    search: string
   ): Promise<{
     repos: RepositoryListType;
     total_page: number;
     total_items: number;
   }> {
     if (!selectedLanguage) return { repos: [], total_page: 0, total_items: 0 };
-    
+
     setIsLoading(true);
 
     try {
@@ -129,7 +132,11 @@ export default function useGithub() {
         setAllRepos(validRepositories);
       }
 
-      const filteredRepos = filterRepositories(repositories, selectedLanguage);
+      const filteredRepos = filterRepositories(
+        repositories,
+        selectedLanguage,
+        search
+      );
       const paginatedRepos = paginateRepositories(filteredRepos, limit, page);
 
       return {

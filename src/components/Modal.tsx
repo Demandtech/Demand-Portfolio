@@ -1,4 +1,4 @@
-import { Key, useEffect, useRef, useState } from "react";
+import { ChangeEvent, Key, useEffect, useRef, useState } from "react";
 import { Modal, ModalContent, ModalHeader, ModalBody } from "@nextui-org/modal";
 import { Input } from "@nextui-org/input";
 import { Tabs, Tab } from "@nextui-org/tabs";
@@ -7,7 +7,11 @@ import Repos from "./Repos";
 
 import useGithub from "@/hooks/useGithub";
 import { RepositoryListType, PaginateProps } from "@/types/index";
-import { getQueryParameter, setQueryParameter } from "@/helpers";
+import {
+  deleteQueryParameter,
+  getQueryParameter,
+  setQueryParameter,
+} from "@/helpers";
 
 interface ModalProps {
   isOpen: boolean;
@@ -19,6 +23,7 @@ export default function App({ isOpen, onOpenChange, onClose }: ModalProps) {
   const targetRef = useRef(null);
   const defaultLanguage =
     getQueryParameter("selected-language") || "TypeScript";
+  const searchParams = getQueryParameter("search") || "";
   const { getAllRepositories, isLoading } = useGithub();
   const [projects, setProjects] = useState<RepositoryListType>([]);
   const [selectedLanguage, setSelectedLanguage] =
@@ -30,12 +35,43 @@ export default function App({ isOpen, onOpenChange, onClose }: ModalProps) {
     total_items: 0,
   });
 
-  const getRepositories = async (limit: number, lang: string, page: number) => {
+  const [search, setSearch] = useState(searchParams);
+
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+
+    if (!value) {
+      deleteQueryParameter("search");
+    } else {
+      setQueryParameter("search", value);
+    }
+
+    setSearch(value);
+    
+    setProjects([]);
+
+    if (paginate.page > 1) {
+      setPaginate((prev) => ({
+        ...prev,
+        page: 1,
+      }));
+    }
+  };
+
+  const getRepositories = async (
+    limit: number,
+    lang: string,
+    page: number,
+    search: string
+  ) => {
     const { repos, total_page, total_items } = await getAllRepositories(
       limit,
       lang,
-      page
+      page,
+      search
     );
+
+    console.log(repos);
 
     setProjects((prev) => {
       const repoIds = new Set(prev.map((repo) => repo.id));
@@ -56,9 +92,9 @@ export default function App({ isOpen, onOpenChange, onClose }: ModalProps) {
 
   useEffect(() => {
     if (!isOpen) return;
-
-    getRepositories(paginate.limit, selectedLanguage, paginate.page);
-  }, [selectedLanguage, isOpen, paginate.page]);
+    console.log("Called??");
+    getRepositories(paginate.limit, selectedLanguage, paginate.page, search);
+  }, [selectedLanguage, isOpen, paginate.page, search]);
 
   return (
     <>
@@ -101,11 +137,20 @@ export default function App({ isOpen, onOpenChange, onClose }: ModalProps) {
             <>
               <ModalHeader className="flex flex-col gap-1 border-b border-white dark:border-[#2b2b2b]">
                 <Input
-                  className="max-w-[79%]"
+                  isClearable
+                  className="max-w-[200px]"
                   classNames={{
                     inputWrapper: "bg-transparent",
                   }}
                   placeholder="Search..."
+                  radius="none"
+                  value={search}
+                  variant="underlined"
+                  onChange={handleInputChange}
+                  onClear={() => {
+                    setSearch("");
+                    deleteQueryParameter("search");
+                  }}
                 />
               </ModalHeader>
               <ModalBody className="px-0 mx-0 py-0">
