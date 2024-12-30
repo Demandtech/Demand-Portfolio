@@ -17,16 +17,20 @@ export default function App({ isOpen, onOpenChange }: ModalProps) {
   const targetRef = useRef(null);
   const { getAllRepositories, isLoading } = useGithub();
   const [projects, setProjects] = useState<RepositoryListType>([]);
-  const [selectedLanguage, setSelectedLanguage] =
-    useState<string>("TypeScript");
+  const [selectedLanguage, setSelectedLanguage] = useState<string>("");
   const [paginate, setPaginate] = useState<PaginateProps>({
     page: 1,
     limit: 5,
-    total_page: 0,
+    total_page: 1,
+    total_items: 0,
   });
 
-  async function getRepositories(limit: number, lang: string, page: number) {
-    const { repos, total_page } = await getAllRepositories(limit, lang, page);
+  const getRepositories = async (limit: number, lang: string, page: number) => {
+    const { repos, total_page, total_items } = await getAllRepositories(
+      limit,
+      lang,
+      page
+    );
 
     setProjects((prev) => {
       const repoIds = new Set(prev.map((repo) => repo.id));
@@ -35,8 +39,8 @@ export default function App({ isOpen, onOpenChange }: ModalProps) {
       return [...prev, ...uniqueNewRepos];
     });
 
-    setPaginate((prev) => ({ ...prev, total_page }));
-  }
+    setPaginate((prev) => ({ ...prev, total_page, total_items }));
+  };
 
   function handleSelectionChange(key: Key) {
     setPaginate((prev) => ({ ...prev, page: 1 }));
@@ -146,4 +150,5 @@ const languages: { label: string }[] = [
   { label: "JavaScript" },
   { label: "Python" },
   { label: "PHP" },
+  { label: "HTML" },
 ];

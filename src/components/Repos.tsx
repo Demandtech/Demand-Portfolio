@@ -30,14 +30,17 @@ function Repos({
         page: prev.page + 1,
       };
     });
-  }, [isInView, paginate.total_page, isLoading]);
+  }, [isInView, isLoading]);
 
   return (
     <div>
-      <div className="bg-bgprimary py-1 px-5 border-y border-[#f2f2f2] dark:border-[#2b2b2b]">
+      <div className="flex items-center justify-between bg-bgprimary py-1 px-5 border-y border-[#f2f2f2] dark:border-[#2b2b2b]">
         <h6 className="text-sm text-primary font-medium opacity-50">
           Repositories
         </h6>
+        <span className="text-sm text-primary font-medium opacity-50">
+          {paginate.total_items}
+        </span>
       </div>
       <div className="flex flex-col overflow-auto relative scrollbar-hide">
         {repositories.length > 0 &&

@@ -20,4 +20,5 @@ export interface PaginateProps {
   page: number;
   limit: number;
   total_page: number;
+  total_items: number;
 }

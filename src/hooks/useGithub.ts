@@ -12,116 +12,135 @@ export default function useGithub() {
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const allRepos: RepositoryListType = [];
+  const [allRepos, setAllRepos] = useState<RepositoryListType>([]);
+
+  async function fetchAllRepositories(
+    perPage: number
+  ): Promise<RepositoryListType> {
+    let allFetchedRepos: RepositoryListType = [];
+    let gitHubPage = 1;
+
+    while (true) {
+      const response = await fetch(
+        `${url}?page=${gitHubPage}&per_page=${perPage}`,
+        { headers }
+      );
+
+      if (!response.ok) throw new Error(`Failed to fetch: ${response.status}`);
+
+      const data = await response.json();
+
+      allFetchedRepos.push(...data);
+
+      if (data.length < perPage) break;
+      gitHubPage++;
+    }
+
+    const usefulData = allFetchedRepos.filter((item) => {
+      return !["css", "scss"].includes(item?.language?.toLowerCase());
+    });
+
+    return usefulData;
+  }
+
+  function filterRepositories(
+    repos: RepositoryListType,
+    language: string
+  ): RepositoryListType {
+    return repos.filter(
+      (repo) =>
+        repo.language?.toLowerCase() === language.toLowerCase() &&
+        repo.languages.length > 0
+    );
+  }
+
+  function paginateRepositories(
+    repos: RepositoryListType,
+    limit: number,
+    page: number
+  ) {
+    const start = (page - 1) * limit;
+    const end = start + limit;
+
+    return repos.slice(start, end);
+  }
+
+  async function fetchRepositoriesLanguages(
+    repos: RepositoryListType
+  ): Promise<RepositoryListType> {
+    return await Promise.all(
+      repos.map(async (repo) => {
+        try {
+          const response = await fetch(repo.languages_url, { headers });
+
+          if (!response.ok) {
+            repo.languages = [];
+          } else {
+            const languages = await response.json();
+
+            repo.languages = Object.keys(languages).filter((lang) =>
+              [
+                "typescript",
+                "javascript",
+                "python",
+                "php",
+                "css",
+                "scss",
+                "dockerfile",
+                "html",
+              ].includes(lang.toLowerCase())
+            );
+          }
+        } catch (error: any) {
+          console.log(error.message);
+          repo.languages = [];
+        }
+
+        return repo;
+      })
+    );
+  }
 
   async function getAllRepositories(
     limit: number,
     selectedLanguage: string = "typescript",
     page: number
-  ): Promise<{ repos: RepositoryListType; total_page: number }> {
-    const perPage = 100;
-    let gitHubPage = 1;
-
+  ): Promise<{
+    repos: RepositoryListType;
+    total_page: number;
+    total_items: number;
+  }> {
+    if (!selectedLanguage) return { repos: [], total_page: 0, total_items: 0 };
+    
     setIsLoading(true);
 
     try {
-      if (!allRepos.length) {
-        while (true) {
-          const response = await fetch(`${url}?page=1&per_page=${perPage}`, {
-            headers,
-          });
+      let repositories = allRepos;
 
-          if (!response.ok) {
-            throw new Error(`Failed to fetch repositories: ${response.status}`);
-          }
+      if (allRepos.length < 1) {
+        const allFetchedRepos = await fetchAllRepositories(100);
+        const enrichedRepos = await fetchRepositoriesLanguages(allFetchedRepos);
 
-          const data = await response.json();
+        const validRepositories = enrichedRepos.filter(
+          (repo) => repo.languages.length > 0
+        );
 
-          allRepos.push(...data);
-
-          if (data.length < perPage) {
-            break;
-          }
-
-          gitHubPage++;
-        }
+        repositories = validRepositories;
+        setAllRepos(validRepositories);
       }
 
-      const repositories = allRepos.filter(
-        (item) =>
-          item.language &&
-          !["HTML", "CSS", "SCSS"].includes(item.language.toUpperCase())
-      );
-
-      const filteredRepos = repositories.filter(
-        (repo) =>
-          repo.language.toLocaleLowerCase() ===
-          selectedLanguage.toLocaleLowerCase()
-      );
-
-      const start = (page - 1) * limit;
-      const end = start + limit;
-
-      const paginatedRepos = filteredRepos.slice(start, end);
-
-      for (const repo of filteredRepos) {
-        try {
-          const languages = await getLanguages(repo.languages_url);
-
-          repo.languages = languages as string[];
-        } catch (err) {
-          console.error(`Error fetching languages for repo ${repo.id}:`, err);
-          repo.languages = [];
-        }
-      }
-
-      const repositoriesArr = paginatedRepos.filter(
-        (repo) => repo.languages.length > 0
-      );
-
-      const total_page = Math.ceil(filteredRepos.length / limit);
+      const filteredRepos = filterRepositories(repositories, selectedLanguage);
+      const paginatedRepos = paginateRepositories(filteredRepos, limit, page);
 
       return {
-        repos: repositoriesArr?.filter((repo) => repo.languages.length > 0),
-        total_page,
+        repos: paginatedRepos,
+        total_page: Math.ceil(filteredRepos.length / limit),
+        total_items: filteredRepos.length,
       };
     } catch (error) {
       console.error("Error fetching repositories:", error);
 
-      return {
-        repos: [],
-        total_page: 0,
-      };
-    } finally {
-      setIsLoading(false);
-    }
-  }
-
-  async function getLanguages(url: string) {
-    try {
-      setIsLoading(true);
-      const response = await fetch(url as string, { headers });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const jsonData = await response.json();
-
-      const langArr = Object.keys(jsonData).filter((lang) =>
-        [
-          "PHP",
-          "HTML",
-          "CSS",
-          "Python",
-          "Dockerfile",
-          "TypeScript",
-          "JavaScript",
-        ].includes(lang)
-      );
-
-      return langArr;
-    } catch (error: any) {
-      console.log(error);
+      return { repos: [], total_page: 0, total_items: 0 };
     } finally {
       setIsLoading(false);
     }
