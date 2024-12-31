@@ -173,7 +173,14 @@ function Aside({
                 className="block bg-primary h-[2px] mr-2"
                 variants={hoverVariants}
               />
-              <span className="capitalize">My Resume</span>
+              <a
+                aria-label="Download Rasheed Adekunle's resume as a PDF"
+                className="capitalize"
+                download="Rasheed resume"
+                href="/assets/pdf/myresume.pdf"
+              >
+                My Resume
+              </a>
             </motion.li>
           </ul>
           <motion.div

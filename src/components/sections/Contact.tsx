@@ -30,8 +30,8 @@ function Contact() {
               </span>
             </Button>
             <p className="text-xs text-secondary">
-              Transparent pricing. No obligations. <br /> Clear, actionable
-              outcomes.
+              I am committed to building an amazing app <br /> Pay attention to
+              details
             </p>
           </div>
         </div>

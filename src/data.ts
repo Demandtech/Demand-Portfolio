@@ -1,9 +1,9 @@
-import spotmate_img_dark from "./assets/projects/spotmate-image-dark.png";
-import spotmate_img_light from "./assets/projects/spotmate-image-light.png";
-import upville_img from "./assets/projects/upville-image.png";
-import techstack_img from "./assets/projects/tech-stack.png";
-import altblog_img_dark from "./assets/projects/altblog-img-dark.png";
-import altblog_img_light from "./assets/projects/altblog-img-light.png";
+import spotmate_img_dark from "/assets/projects/spotmate-image-dark.png";
+import spotmate_img_light from "/assets/projects/spotmate-image-light.png";
+import upville_img from "/assets/projects/upville-image.png";
+import techstack_img from "/assets/projects/tech-stack.png";
+import altblog_img_dark from "/assets/projects/altblog-img-dark.png";
+import altblog_img_light from "/assets/projects/altblog-img-light.png";
 
 export const projects = [
   {

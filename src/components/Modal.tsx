@@ -47,7 +47,7 @@ export default function App({ isOpen, onOpenChange, onClose }: ModalProps) {
     }
 
     setSearch(value);
-    
+
     setProjects([]);
 
     if (paginate.page > 1) {
@@ -71,8 +71,6 @@ export default function App({ isOpen, onOpenChange, onClose }: ModalProps) {
       search
     );
 
-    console.log(repos);
-
     setProjects((prev) => {
       const repoIds = new Set(prev.map((repo) => repo.id));
       const uniqueNewRepos = repos.filter((repo) => !repoIds.has(repo.id));
@@ -92,7 +90,7 @@ export default function App({ isOpen, onOpenChange, onClose }: ModalProps) {
 
   useEffect(() => {
     if (!isOpen) return;
-    console.log("Called??");
+ 
     getRepositories(paginate.limit, selectedLanguage, paginate.page, search);
   }, [selectedLanguage, isOpen, paginate.page, search]);
 
