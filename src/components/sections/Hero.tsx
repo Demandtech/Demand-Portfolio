@@ -14,7 +14,7 @@ export default function Hero() {
           <div className="font-inter lg:max-w-[800px] flex-col flex gap-10 items-start">
             <motion.h1
               animate={{ y: 0 }}
-              className="max-w-[90%] lg:max-w-full text-[2.698rem] leading-[3.5rem] lg:text-7xl font-bold text-primary"
+              className="max-w-[90%] lg:max-w-full text-[3.3rem] leading-[3.5rem] lg:text-7xl font-bold text-primary"
               initial={{ y: 50 }}
               transition={{ duration: 0.8, delay: 2.8 }}
             >
@@ -41,6 +41,7 @@ export default function Hero() {
                 className="transition duration-300 bg-primary  group hover:opacity-70"
               >
                 <a
+                  aria-label="Download Rasheed Adekunle's resume as a PDF"
                   className="flex items-center"
                   download="Rasheed CV"
                   href="/assets/pdf/myresume.pdf"
