@@ -148,7 +148,7 @@ export default function App({ isOpen, onOpenChange, onClose }: ModalProps) {
       >
         <ModalContent>
           {() => (
-            <>
+            <ModalContent>
               <ModalHeader className="flex flex-col gap-1 border-b border-white dark:border-[#2b2b2b]">
                 <Input
                   isClearable
@@ -204,7 +204,7 @@ export default function App({ isOpen, onOpenChange, onClose }: ModalProps) {
                   ))}
                 </Tabs>
               </ModalBody>
-            </>
+            </ModalContent>
           )}
         </ModalContent>
       </Modal>

@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
 
-import { RepoIcon } from "./Svgs";
+import { RepoIcon } from "../Svgs";
 
 import { RepositoryType } from "@/types/index";
 

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import AnimatedCursor from "react-animated-cursor";
 import { useDisclosure } from "@nextui-org/modal";
 
@@ -9,7 +9,6 @@ import {
   Header,
   Aside,
   BottomSides,
-  Modal,
   Footer,
 } from "@/components";
 import {
@@ -17,6 +16,10 @@ import {
   setQueryParameter,
   getQueryParameter,
 } from "@/helpers";
+
+const RepositoryModal = lazy(
+  () => import("./components/repositories/RepositoryModal")
+);
 
 function App() {
   const [isMounted, setIsMounted] = useState<boolean>(false);
@@ -99,14 +102,18 @@ function App() {
       <IndexPage onOpen={onOpen} />
       <PageLoader isMounted={isMounted} />
       <BottomSides />
-      <Modal
-        isOpen={isOpen}
-        onClose={() => {
-          onClose();
-          deleteQueryParameter("selected-language");
-        }}
-        onOpenChange={onOpenChange}
-      />
+      <Suspense fallback={null}>
+        {isOpen && (
+          <RepositoryModal
+            isOpen={isOpen}
+            onClose={() => {
+              onClose();
+              deleteQueryParameter("selected-language");
+            }}
+            onOpenChange={onOpenChange}
+          />
+        )}
+      </Suspense>
       <Footer />
     </div>
   );

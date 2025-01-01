@@ -1,28 +1,39 @@
-import { useRef, Suspense, lazy } from "react";
-import { motion, useInView } from "framer-motion";
+import { useRef, Suspense } from "react";
+import { motion } from "framer-motion";
+import { Image } from "@nextui-org/image";
 
 import { AnchorSvg, GithubRepoIcon } from "./Svgs";
 
 import { useTheme } from "@/contexts/ThemeContext";
 import { ProjectType } from "@/types";
 
-const LazyImage = lazy(() =>
-  import("@nextui-org/image").then((module) => ({ default: module.Image }))
-);
-
 export default function ProjectCard({ project }: { project: ProjectType }) {
   const cardRef = useRef(null);
-  const isInVieww = useInView(cardRef, { once: true });
   const { theme } = useTheme();
 
-  const cardVariants = {
+  const imageVariants = {
     initial: {
       scale: 0.9,
       opacity: 0,
+      transition: { duration: 0.4, type: "spring" },
     },
     animate: {
       scale: 1,
       opacity: 1,
+      transition: { duration: 0.4, type: "spring" },
+    },
+  };
+
+  const detailsVariants = {
+    initial: {
+      opacity: 0,
+      y: 20,
+      transition: { duration: 0.4, type: "spring" },
+    },
+    animate: {
+      opacity: 1,
+      y: 0,
+      transition: { delay: 0.3, duration: 0.9, type: "spring" },
     },
   };
 
@@ -32,23 +43,16 @@ export default function ProjectCard({ project }: { project: ProjectType }) {
       className="flex gap-8 lg:gap-12 flex-col lg:flex-row relative"
     >
       <motion.div
-        animate={isInVieww ? "animate" : "initial"}
+        animate="initial"
         className="lg:w-3/5 relative h-full max-h-[400px] overflow-hidden"
         initial="initial"
-        transition={{ duration: 0.4 }}
-        variants={cardVariants}
-        whileHover={{ scale: 1.02 }}
+        variants={imageVariants}
+        whileInView="animate"
       >
         <div className="absolute top-0 left-0 bg-[#00000034] w-full h-full z-50" />
         <Suspense fallback="Loading...">
-          <motion.div
-            key={theme}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            initial={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.3 }}
-          >
-            <LazyImage
+          <div key={theme}>
+            <Image
               className="object-cover"
               classNames={{
                 img: "object-contain",
@@ -63,15 +67,15 @@ export default function ProjectCard({ project }: { project: ProjectType }) {
               }
               width={"100%"}
             />
-          </motion.div>
+          </div>
         </Suspense>
       </motion.div>
       <motion.div
-        animate={isInVieww ? "animate" : "initial"}
         className="font-comic text-primary flex flex-col lg:w-2/5 gap-5 lg:gap-7 pb-10"
         initial="initial"
         transition={{ duration: 0.4 }}
-        variants={cardVariants}
+        variants={detailsVariants}
+        whileInView="animate"
       >
         <p className="font-comic text-lg md:text-xl font-semibold text-secondary">
           {project.index + 1}
