@@ -4,6 +4,17 @@ export type IconSvgProps = SVGProps<SVGSVGElement> & {
   size?: number;
 };
 
+export type ProjectType = {
+  index: number;
+  name: string;
+  live_url: string;
+  description: string;
+  tools: string;
+  repo_url?: string;
+  image: string;
+  light_img: string | null;
+};
+
 export type RepositoryType = {
   id: number;
   name: string;

@@ -1,6 +1,4 @@
-import { Button } from "@nextui-org/button";
-
-import { FlowerSvg, DownloadIcon } from "../Svgs";
+import { FlowerSvg } from "../Svgs";
 
 function Contact() {
   return (
@@ -18,17 +16,11 @@ function Contact() {
             <h4 className="text-4xl  font-inter font-semibold text-primary">
               Let&apos;s make a start on your idea
             </h4>
-            <Button className="bg-primary text-bgprimary" size="lg">
-              <span>Contact me</span>
-              <span className="h-[14px] w-[14px] overflow-hidden">
-                <div>
-                  <DownloadIcon className="transition duration-300 group-hover:-translate-y-full fill-bgprimary" />
-                </div>
-                <div>
-                  <DownloadIcon className="transition duration-300 group-hover:-translate-y-full fill-bgprimary" />
-                </div>
-              </span>
-            </Button>
+
+            <p className="font-comic lg:text-xl">
+              Send an email to <br /> rasheedadekunle91@gmail.com <br /> to get
+              in touch! 🤙
+            </p>
             <p className="text-xs text-secondary">
               I am committed to building an amazing app <br /> Pay attention to
               details

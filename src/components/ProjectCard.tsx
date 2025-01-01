@@ -1,28 +1,16 @@
 import { useRef, Suspense, lazy } from "react";
 import { motion, useInView } from "framer-motion";
 
-import { AnchorSvg } from "./Svgs";
+import { AnchorSvg, GithubRepoIcon } from "./Svgs";
 
 import { useTheme } from "@/contexts/ThemeContext";
+import { ProjectType } from "@/types";
 
 const LazyImage = lazy(() =>
   import("@nextui-org/image").then((module) => ({ default: module.Image }))
 );
 
-export default function ProjectCard({
-  project,
-}: {
-  project: {
-    index: number;
-    name: string;
-    live_url: string;
-    description: string;
-    tools: string;
-    repo_url?: string;
-    image: string;
-    light_img: string | null;
-  };
-}) {
+export default function ProjectCard({ project }: { project: ProjectType }) {
   const cardRef = useRef(null);
   const isInVieww = useInView(cardRef, { once: true });
   const { theme } = useTheme();
@@ -98,11 +86,15 @@ export default function ProjectCard({
         </a>
         <p className="text-lg text-secondary">{project.description}</p>
         <p className="text-lg text-secondary">{project.tools}</p>
-        <div>
+        <div className="flex items-center gap-2">
           <a href={project.live_url} rel="noreferrer" target="_blank">
             <AnchorSvg className="fill-accent stroke-accent" />
           </a>
-          {project.repo_url && <a href={project.repo_url}>icon2</a>}
+          {project.repo_url && (
+            <a href={project.repo_url} rel="noreferrer" target="_blank">
+              <GithubRepoIcon />
+            </a>
+          )}
         </div>
       </motion.div>
     </div>

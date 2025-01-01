@@ -67,6 +67,21 @@ export default function useGithub() {
     return repos.slice(start, end);
   }
 
+  function sortRepositories(repos: RepositoryListType): RepositoryListType {
+    if (!repos) return [];
+
+    return repos.sort((a, b) => {
+      const hasDescriptionA = Boolean(a.description);
+      const hasDescriptionB = Boolean(b.description);
+
+      if (hasDescriptionA === hasDescriptionB) {
+        return 0;
+      }
+
+      return hasDescriptionA ? -1 : 1;
+    });
+  }
+
   async function fetchRepositoriesLanguages(
     repos: RepositoryListType
   ): Promise<RepositoryListType> {
@@ -128,8 +143,10 @@ export default function useGithub() {
           (repo) => repo.languages.length > 0
         );
 
-        repositories = validRepositories;
-        setAllRepos(validRepositories);
+        const sortedRepos = sortRepositories(validRepositories);
+
+        repositories = sortedRepos;
+        setAllRepos(sortedRepos);
       }
 
       const filteredRepos = filterRepositories(

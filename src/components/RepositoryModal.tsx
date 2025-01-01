@@ -26,7 +26,7 @@ export default function App({ isOpen, onOpenChange, onClose }: ModalProps) {
     getQueryParameter("selected-language") || "TypeScript";
   const searchParams = getQueryParameter("search") || "";
   const { getAllRepositories, isLoading } = useGithub();
-  const [projects, setProjects] = useState<RepositoryListType>([]);
+  const [repositories, setRepositories] = useState<RepositoryListType>([]);
   const [selectedLanguage, setSelectedLanguage] =
     useState<string>(defaultLanguage);
   const [paginate, setPaginate] = useState<PaginateProps>({
@@ -49,7 +49,7 @@ export default function App({ isOpen, onOpenChange, onClose }: ModalProps) {
       setQueryParameter("search", value);
     }
 
-    setProjects([]);
+    setRepositories([]);
 
     if (paginate.page > 1) {
       setPaginate((prev) => ({
@@ -80,11 +80,13 @@ export default function App({ isOpen, onOpenChange, onClose }: ModalProps) {
       search
     );
 
-    setProjects((prev) => {
+    setRepositories((prev) => {
       const repoIds = new Set(prev.map((repo) => repo.id));
       const uniqueNewRepos = repos.filter((repo) => !repoIds.has(repo.id));
 
-      return [...prev, ...uniqueNewRepos];
+      const combinedRepos = [...prev, ...uniqueNewRepos];
+
+      return combinedRepos;
     });
 
     setPaginate((prev) => ({ ...prev, total_page, total_items }));
@@ -92,7 +94,7 @@ export default function App({ isOpen, onOpenChange, onClose }: ModalProps) {
 
   function handleSelectionChange(key: Key) {
     setPaginate((prev) => ({ ...prev, page: 1 }));
-    setProjects([]);
+    setRepositories([]);
     setSelectedLanguage(key as string);
     setQueryParameter("selected-language", key as string);
   }
@@ -195,7 +197,7 @@ export default function App({ isOpen, onOpenChange, onClose }: ModalProps) {
                       <Repos
                         isLoading={isLoading}
                         paginate={paginate}
-                        repositories={projects}
+                        repositories={repositories}
                         setPaginate={setPaginate}
                       />
                     </Tab>
