@@ -45,7 +45,7 @@ export default function MyStory() {
               <p>Databases: SQL, PostgreSQL, MongoDB, Redis.</p>
               <p>Testing: E2E Testing, Unit & integrations testing (Jest).</p>
 
-              <p>Styling: Tailwind CSS, Sass, Styled Components.</p>
+              <p>Styling: Css, Tailwind CSS, Sass, Styled Components.</p>
             </div>
           </div>
         </div>

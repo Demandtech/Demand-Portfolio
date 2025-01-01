@@ -4,7 +4,7 @@ import { Button } from "@nextui-org/button";
 import { Kbd } from "@nextui-org/kbd";
 import { motion } from "framer-motion";
 
-import { MoonSvg, SunSvg } from "./Svgs";
+import { MoonSvg, SunSvg } from "../Svgs";
 
 import { useTheme } from "@/contexts/ThemeContext";
 
@@ -25,8 +25,7 @@ function Header({
     >
       <div className="flex items-center justify-between pt-5 lg:pt-10 max-w-[95%] lg:max-w-[90%] mx-auto">
         <div className="uppercase leading-4 lg:leading-5 text-center lg:text-2xl font-noto backdrop-blur-sm">
-          <p className="text-primary">Demand</p>
-          {/* <p className="text-primary">Tech</p> */}
+          <p className="text-accent">Demand</p>
         </div>
 
         <div className="flex items-center gap-5 z-[599]">
@@ -53,22 +52,12 @@ function Header({
               inputWrapper: "bg-bgsecondary",
             }}
             endContent={
-              <Button
-                isIconOnly
-                className="z-50"
-                size="sm"
-                tabIndex={0}
-                type="button"
-                variant="light"
-                onPress={setOpenModal}
+              <Kbd
+                className="bg-black150 border-none shadow-none text-primary text-xs opacity-65"
+                keys={["command"]}
               >
-                <Kbd
-                  className="bg-black150 border-none shadow-none text-primary"
-                  keys={["command"]}
-                >
-                  K
-                </Kbd>
-              </Button>
+                K
+              </Kbd>
             }
             placeholder="Search..."
             radius="sm"

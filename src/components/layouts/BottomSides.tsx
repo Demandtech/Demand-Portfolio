@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-import { GithubIcon, LinkedInIcon, EmailIcon, TwitterIcon } from "./Svgs";
+import { GithubIcon, LinkedInIcon, EmailIcon, TwitterIcon } from "../Svgs";
 
 function BottomSides() {
   const socialsVariants = {
