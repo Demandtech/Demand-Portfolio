@@ -3,8 +3,10 @@ import { useInView } from "framer-motion";
 
 import RepoCard from "./RepoCard";
 import RepoCardSkeleton from "./RepoCardSkeleton";
+import { EmptyIcon } from "./Svgs";
 
 import { RepositoryListType, PaginateProps } from "@/types/index";
+
 
 function Repos({
   repositories,
@@ -48,6 +50,12 @@ function Repos({
 
         {isLoading && <RepoCardSkeleton isLoading={isLoading} />}
 
+        {!isLoading && repositories.length === 0 && (
+          <div className="flex items-center justify-center h-40 flex-col gap-2">
+            <EmptyIcon className="fill-primary" />
+            <p className="text-primary text-lg">No results found</p>
+          </div>
+        )}
         <div
           ref={divRef}
           className="h-0.5 w-full bg-transparent sticky bottom-0"

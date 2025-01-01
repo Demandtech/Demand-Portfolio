@@ -8,6 +8,7 @@ import Repos from "./Repos";
 import useGithub from "@/hooks/useGithub";
 import { RepositoryListType, PaginateProps } from "@/types/index";
 import {
+  debounce,
   deleteQueryParameter,
   getQueryParameter,
   setQueryParameter,
@@ -36,17 +37,17 @@ export default function App({ isOpen, onOpenChange, onClose }: ModalProps) {
   });
 
   const [search, setSearch] = useState(searchParams);
+  const [debounceSearch, setDebounceSearch] = useState("");
 
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-
+  const handleDebouncedInputChange = debounce((value: string) => {
+    setDebounceSearch(value);
     if (!value) {
       deleteQueryParameter("search");
+
+      return;
     } else {
       setQueryParameter("search", value);
     }
-
-    setSearch(value);
 
     setProjects([]);
 
@@ -56,6 +57,14 @@ export default function App({ isOpen, onOpenChange, onClose }: ModalProps) {
         page: 1,
       }));
     }
+  }, 1000);
+
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+
+    setSearch(value);
+
+    handleDebouncedInputChange(value);
   };
 
   const getRepositories = async (
@@ -90,9 +99,14 @@ export default function App({ isOpen, onOpenChange, onClose }: ModalProps) {
 
   useEffect(() => {
     if (!isOpen) return;
- 
-    getRepositories(paginate.limit, selectedLanguage, paginate.page, search);
-  }, [selectedLanguage, isOpen, paginate.page, search]);
+
+    getRepositories(
+      paginate.limit,
+      selectedLanguage,
+      paginate.page,
+      debounceSearch
+    );
+  }, [selectedLanguage, isOpen, paginate.page, debounceSearch]);
 
   return (
     <>
@@ -147,6 +161,7 @@ export default function App({ isOpen, onOpenChange, onClose }: ModalProps) {
                   onChange={handleInputChange}
                   onClear={() => {
                     setSearch("");
+                    setDebounceSearch("");
                     deleteQueryParameter("search");
                   }}
                 />

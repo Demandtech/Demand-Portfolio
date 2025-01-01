@@ -20,9 +20,9 @@ export const projects = [
   {
     name: "Upville Homes",
     description:
-      "Your ultimate fitness companion, a social media and fitness tracking application.",
+      " Property Asset Management and Tracking System (PAMTS). The PAMTS project aims to develop a comprehensive web-based platform to improve property asset management.",
     tools:
-      "Tools: TypeScript, React, Expressjs, MongoDb, React Query, Redux, Nextui, Tailwind CSS, Git & Github, Vercel.",
+      "Tools: TypeScript, React, Expressjs, MongoDb, React Query, Redux toolkits, Socket.io, Nextui, Tailwind CSS, Git & Github, Render, Vercel.",
     github_url: "",
     live_url: "https://upvillehomes.vercel.app",
     image: upville_img,
@@ -31,7 +31,7 @@ export const projects = [
   {
     name: "Tech Stack",
     description:
-      "Your ultimate fitness companion, a social media and fitness tracking application.",
+      "TechStack; Devs2Dev is a tech developers conference event, in which senior tech developers, startup CEO and CTO are invited to speak to developers on various TechStach, frameworks, programming languages, jobs, latest tech development and also sgare their tech experience",
     tools: "Tools: Javascript, React, Tailwind CSS, Git & Github, Vercel.",
     github_url: "",
     live_url: "https://techstack24.vercel.app",
@@ -41,9 +41,9 @@ export const projects = [
   {
     name: "Alt Blog",
     description:
-      "Your ultimate fitness companion, a social media and fitness tracking application.",
+      "The platform allows users to post blogs, comment, like, bookmark posts, and engage in meaningful discussions on a wide range of subjects, including technology, lifestyle, education, and more.",
     tools:
-      "Tools: Javascript, React, Expressjs, MongoDb, Socketio, React Query, Redux, Nextui, Tailwind CSS, Git & Github, Render, Vercel.",
+      "Tools: Javascript, React, Expressjs, MongoDb, Socketio, React Query, Redux, Nextui, Tailwind CSS, Render, Vercel.",
     github_url: "",
     live_url: "https://altblog-frontend.vercel.app/",
     image: altblog_img_dark,
