@@ -6,6 +6,6 @@ export function mockFetch(data: any, status = 200) {
       ok: status >= 200 && status < 300,
       status,
       json: () => Promise.resolve(data),
-    })
+    }),
   );
 }
