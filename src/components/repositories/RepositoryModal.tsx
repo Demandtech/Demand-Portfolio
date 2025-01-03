@@ -71,13 +71,13 @@ export default function App({ isOpen, onOpenChange, onClose }: ModalProps) {
     limit: number,
     lang: string,
     page: number,
-    search: string
+    search: string,
   ) => {
     const { repos, total_page, total_items } = await getAllRepositories(
       limit,
       lang,
       page,
-      search
+      search,
     );
 
     setRepositories((prev) => {
@@ -106,7 +106,7 @@ export default function App({ isOpen, onOpenChange, onClose }: ModalProps) {
       paginate.limit,
       selectedLanguage,
       paginate.page,
-      debounceSearch
+      debounceSearch,
     );
   }, [selectedLanguage, isOpen, paginate.page, debounceSearch]);
 

@@ -22,7 +22,7 @@ export function deleteQueryParameter(key: string): void {
 
 export function debounce<T extends (...args: any) => void>(
   func: T,
-  wait: number
+  wait: number,
 ): (...args: Parameters<T>) => void {
   let timeoutId: ReturnType<typeof setTimeout> | null = null;
 

@@ -1,6 +1,6 @@
 import { Button } from "@nextui-org/button";
 
-import { projects } from "../../data";
+import { projects } from "../../data/data";
 import ProjectCard from "../ProjectCard";
 import { ArrowRight } from "../Svgs";
 

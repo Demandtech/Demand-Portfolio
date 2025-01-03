@@ -26,7 +26,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
 
   useEffect(() => {
     const userPrefersDark = window.matchMedia(
-      `prefers-color-scheme: ${ThemeProps.dark})`
+      `prefers-color-scheme: ${ThemeProps.dark})`,
     ).matches;
     const storedTheme = localStorage.getItem(ThemeProps.key);
 
@@ -39,7 +39,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
     localStorage.setItem(ThemeProps.key, theme);
     document.documentElement.classList.remove(
       ThemeProps.light,
-      ThemeProps.dark
+      ThemeProps.dark,
     );
     document.documentElement.classList.add(theme);
     setTheme(theme);
@@ -47,7 +47,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const toggleTheme = () => {
     setTheme((prev) =>
-      prev === ThemeProps.light ? ThemeProps.dark : ThemeProps.light
+      prev === ThemeProps.light ? ThemeProps.dark : ThemeProps.light,
     );
   };
 

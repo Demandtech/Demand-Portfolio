@@ -18,7 +18,7 @@ import {
 } from "@/helpers";
 
 const RepositoryModal = lazy(
-  () => import("./components/repositories/RepositoryModal")
+  () => import("./components/repositories/RepositoryModal"),
 );
 
 function App() {

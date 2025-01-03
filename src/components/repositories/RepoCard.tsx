@@ -51,7 +51,7 @@ function RepoCard({ item }: { item: RepositoryType }) {
                 <div key={language} className="flex items-center gap-1">
                   <span
                     className={twMerge(
-                      clsx("w-3 h-3 rounded-[4px] block", bgColor)
+                      clsx("w-3 h-3 rounded-[4px] block", bgColor),
                     )}
                   />
                   <span className="opacity-60 text-xs">{language}</span>

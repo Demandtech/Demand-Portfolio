@@ -26,8 +26,8 @@ export default [
       "plugin:react/recommended",
       "plugin:prettier/recommended",
       "plugin:react-hooks/recommended",
-      "plugin:jsx-a11y/recommended"
-    )
+      "plugin:jsx-a11y/recommended",
+    ),
   ),
   {
     files: ["src/**/*.{ts,tsx}"],
@@ -43,7 +43,7 @@ export default [
     languageOptions: {
       globals: {
         ...Object.fromEntries(
-          Object.entries(globals.browser).map(([key]) => [key, "off"])
+          Object.entries(globals.browser).map(([key]) => [key, "off"]),
         ),
         ...globals.node,
       },

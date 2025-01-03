@@ -8,7 +8,6 @@ import RepoCardSkeleton from "./RepoCardSkeleton";
 
 import { RepositoryListType, PaginateProps } from "@/types/index";
 
-
 function Repos({
   repositories,
   isLoading,

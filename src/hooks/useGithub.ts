@@ -15,7 +15,7 @@ export default function useGithub() {
   const [allRepos, setAllRepos] = useState<RepositoryListType>([]);
 
   async function fetchAllRepositories(
-    perPage: number
+    perPage: number,
   ): Promise<RepositoryListType> {
     let allFetchedRepos: RepositoryListType = [];
     let gitHubPage = 1;
@@ -23,7 +23,7 @@ export default function useGithub() {
     while (true) {
       const response = await fetch(
         `${url}?page=${gitHubPage}&per_page=${perPage}`,
-        { headers }
+        { headers },
       );
 
       if (!response.ok) throw new Error(`Failed to fetch: ${response.status}`);
@@ -46,20 +46,20 @@ export default function useGithub() {
   function filterRepositories(
     repos: RepositoryListType,
     language: string,
-    search: string
+    search: string,
   ): RepositoryListType {
     return repos.filter(
       (repo) =>
         repo.language?.toLowerCase() === language.toLowerCase() &&
         repo.languages.length > 0 &&
-        repo.name.toLowerCase().includes(search.toLowerCase())
+        repo.name.toLowerCase().includes(search.toLowerCase()),
     );
   }
 
   function paginateRepositories(
     repos: RepositoryListType,
     limit: number,
-    page: number
+    page: number,
   ) {
     const start = (page - 1) * limit;
     const end = start + limit;
@@ -83,7 +83,7 @@ export default function useGithub() {
   }
 
   async function fetchRepositoriesLanguages(
-    repos: RepositoryListType
+    repos: RepositoryListType,
   ): Promise<RepositoryListType> {
     return await Promise.all(
       repos.map(async (repo) => {
@@ -105,7 +105,7 @@ export default function useGithub() {
                 "scss",
                 "dockerfile",
                 "html",
-              ].includes(lang.toLowerCase())
+              ].includes(lang.toLowerCase()),
             );
           }
         } catch (error: any) {
@@ -114,7 +114,7 @@ export default function useGithub() {
         }
 
         return repo;
-      })
+      }),
     );
   }
 
@@ -122,7 +122,7 @@ export default function useGithub() {
     limit: number,
     selectedLanguage: string = "typescript",
     page: number,
-    search: string
+    search: string,
   ): Promise<{
     repos: RepositoryListType;
     total_page: number;
@@ -140,7 +140,7 @@ export default function useGithub() {
         const enrichedRepos = await fetchRepositoriesLanguages(allFetchedRepos);
 
         const validRepositories = enrichedRepos.filter(
-          (repo) => repo.languages.length > 0
+          (repo) => repo.languages.length > 0,
         );
 
         const sortedRepos = sortRepositories(validRepositories);
@@ -152,7 +152,7 @@ export default function useGithub() {
       const filteredRepos = filterRepositories(
         repositories,
         selectedLanguage,
-        search
+        search,
       );
       const paginatedRepos = paginateRepositories(filteredRepos, limit, page);
 
