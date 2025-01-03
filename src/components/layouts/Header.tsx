@@ -38,7 +38,6 @@ function Header({
               isIconOnly
               className="bg-bgsecondary"
               radius="full"
-              onClick={toggleTheme}
               onPress={toggleTheme}
             >
               {theme === "light" ? <MoonSvg /> : <SunSvg />}
@@ -65,16 +64,18 @@ function Header({
             variant="flat"
             onClick={setOpenModal}
           />
-          <button
-            className="z-50 bg-primary"
-            onClick={() => setOpenMenu((prev: boolean) => !prev)}
+          <Button
+            isIconOnly
+            className="z-50 bg-primary w-[50px] h-[50px]"
+            radius="none"
+            onPress={() => setOpenMenu((prev: boolean) => !prev)}
           >
             <div className={`${openMenu ? " open" : ""}`} id="menu-bar">
               <span className="bg-bgprimary" />
               <span className="bg-bgprimary" />
               <span className="bg-bgprimary" />
             </div>
-          </button>
+          </Button>
         </div>
       </div>
     </header>
