@@ -1,9 +1,10 @@
 import { Dispatch, SetStateAction, useEffect, useRef } from "react";
 import { useInView } from "framer-motion";
 
+import { EmptyIcon } from "../Svgs";
+
 import RepoCard from "./RepoCard";
 import RepoCardSkeleton from "./RepoCardSkeleton";
-import { EmptyIcon } from "../Svgs";
 
 import { RepositoryListType, PaginateProps } from "@/types/index";
 
