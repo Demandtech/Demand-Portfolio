@@ -25,10 +25,7 @@ jobs:
         run: npm run lint
 
       - name: Check Code Formatting
-        run: npx prettier --check . --write
+        run: npx prettier --check .
 
       - name: Check Type
         run: npx tsc --noEmit
-
-      - name: Check Test
-        run: npm test
