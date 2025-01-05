@@ -102,7 +102,7 @@ function App() {
       <IndexPage onOpen={onOpen} />
       <PageLoader isMounted={isMounted} />
       <BottomSides />
-      <Suspense fallback={null}>
+      <Suspense fallback={<div>Loading...</div>}>
         {isOpen && (
           <RepositoryModal
             isOpen={isOpen}
