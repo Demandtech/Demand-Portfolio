@@ -29,6 +29,6 @@ jobs:
 
       - name: Check Type
         run: npx tsc --noEmit
-        
+
       - name: Run Build
         run: npm run build
