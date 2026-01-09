@@ -45,7 +45,7 @@ export const projects = [
       "Your ultimate fitness companion, a social media, weekly meal plan, weekly workout plan and fitness tracking both on website and application.",
     tools:
       "Tools: Javascript, Nextjs, Laravel, Redux, Tailwind CSS, GraphQl, Third Parties API's, Playwright, Jest, Git & Github, Vercel.",
-    repo_url: "",
+    repo_url: "https://github.com/Demandtech/pixellium_school_portal_frontend",
     live_url: "https://spotmatefrontend.vercel.app",
     image: spotmate_img_dark,
     light_img: spotmate_img_light,
