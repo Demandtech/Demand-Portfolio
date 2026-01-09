@@ -1,5 +1,7 @@
-# Weather Forecast Project
-
 ![CI Status](https://github.com/Demandtech/weatherforecast/actions/workflows/ci.yml/badge.svg)
 
-This project is powered by CI/CD to ensure the code quality and deployment process is automated and consistent.
+This project uses a CI/CD pipeline to automate testing and deployments, ensuring clean, reliable, and production-ready code.
+
+# My Portfolio
+
+This is my personal portfolio where I showcase my skills, projects, and growth as a software developer.

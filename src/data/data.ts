@@ -2,8 +2,9 @@ import spotmate_img_dark from "/assets/projects/spotmate-image-dark.png";
 import spotmate_img_light from "/assets/projects/spotmate-image-light.png";
 import upville_img from "/assets/projects/upville-image.png";
 import techstack_img from "/assets/projects/tech-stack.png";
-import altblog_img_dark from "/assets/projects/altblog-img-dark.png";
-import altblog_img_light from "/assets/projects/altblog-img-light.png";
+// import altblog_img_dark from "/assets/projects/altblog-img-dark.png";
+// import altblog_img_light from "/assets/projects/altblog-img-light.png";
+import pixelium_img from "/assets/projects/pixelium-image.png";
 
 export const projects = [
   {
@@ -15,6 +16,17 @@ export const projects = [
     repo_url: "https://github.com/Demandtech/upvilles-home-frontend",
     live_url: "https://upvillehomes.vercel.app",
     image: upville_img,
+    light_img: null,
+  },
+  {
+    name: "Pixelium",
+    description:
+      "Pixelium is a comprehensive student examination management portal designed to streamline the creation, administration, and evaluation of exams. It enables schools to manage students, exams, and results efficiently through a secure, role-based system with a modern, responsive interface.",
+    tools:
+      "Tools: TypeScript, Nextjs, Expressjs, MongoDb, React Query, Shadcn, Tailwind CSS, Render, Vercel.",
+    repo_url: "https://github.com/Demandtech/pixellium_school_portal_frontend",
+    live_url: "https://altblog-frontend.vercel.app/",
+    image: pixelium_img,
     light_img: null,
   },
   {
@@ -33,22 +45,12 @@ export const projects = [
       "Your ultimate fitness companion, a social media, weekly meal plan, weekly workout plan and fitness tracking both on website and application.",
     tools:
       "Tools: Javascript, Nextjs, Laravel, Redux, Tailwind CSS, GraphQl, Third Parties API's, Playwright, Jest, Git & Github, Vercel.",
-    repo_url: "",
+    repo_url: "https://github.com/Demandtech/pixellium_school_portal_frontend",
     live_url: "https://spotmatefrontend.vercel.app",
     image: spotmate_img_dark,
     light_img: spotmate_img_light,
   },
-  {
-    name: "Alt Blog",
-    description:
-      "The platform allows users to post blogs, comment, like, bookmark posts, and engage in meaningful discussions on a wide range of subjects, including technology, lifestyle, education, and more.",
-    tools:
-      "Tools: Javascript, React, Expressjs, MongoDb, Socketio, React Query, Redux, Nextui, Tailwind CSS, Render, Vercel.",
-    repo_url: "https://github.com/Demandtech/Altblog-Frontend",
-    live_url: "https://altblog-frontend.vercel.app/",
-    image: altblog_img_dark,
-    light_img: altblog_img_light,
-  },
+
   // {
   //   name: "StreetBazaar",
   //   description:
