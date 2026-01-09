@@ -35,8 +35,8 @@ export default function MyStory() {
               <p>My core technologies:</p>
               <p>Languages: Javascript, Typescript.</p>
               <p>
-                Technologies: React.js, Next.js, Node.js, Express.js, React, Java, Springboot
-                Native.
+                Technologies: React.js, Next.js, Node.js, Express.js, React,
+                Java, Springboot Native.
               </p>
               <p>
                 Tools & Platforms: Git, GitHub, Netlify, Vercel, AWS, Firebase,
