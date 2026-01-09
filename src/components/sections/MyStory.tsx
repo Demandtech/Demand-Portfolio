@@ -24,7 +24,7 @@ export default function MyStory() {
           </div>
           <div className="text-primary font-comic font-[300] text-lg md:text-2xl max-w-[1040px] flex flex-col gap-10">
             <p>
-              I am Rasheed, a results-driven software developer with{" "}
+              I am Rasheed, a results-driven software Engineer with{" "}
               {yearDifference}+ years of experience designing and delivering
               scalable, high-performance web applications that drive exceptional
               user experiences for businesses and startups globally. I am
@@ -35,7 +35,7 @@ export default function MyStory() {
               <p>My core technologies:</p>
               <p>Languages: Javascript, Typescript.</p>
               <p>
-                Technologies: React.js, Next.js, Node.js, Express.js, React
+                Technologies: React.js, Next.js, Node.js, Express.js, React, Java, Springboot
                 Native.
               </p>
               <p>

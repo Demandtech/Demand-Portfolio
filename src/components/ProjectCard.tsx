@@ -40,7 +40,7 @@ export default function ProjectCard({ project }: { project: ProjectType }) {
   return (
     <div
       ref={cardRef}
-      className="flex gap-8 lg:gap-12 flex-col lg:flex-row relative"
+      className="flex gap-8 lg:gap-12 flex-col lg:flex-row relative lg:items-center"
     >
       <motion.div
         animate="initial"
@@ -53,7 +53,7 @@ export default function ProjectCard({ project }: { project: ProjectType }) {
         <Suspense fallback="Loading...">
           <div key={theme}>
             <Image
-              className="object-cover"
+              className="object-cover h-full w-full"
               classNames={{
                 img: "object-contain",
               }}

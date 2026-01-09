@@ -221,7 +221,7 @@ function Aside({
               </a>
               <a
                 className="hover:opacity-65 transition-opacity"
-                href="https://x.com/ara_tuntun"
+                href="https://x.com/_omolomo_"
                 rel="noreferrer"
                 target="_blank"
               >
@@ -229,7 +229,7 @@ function Aside({
               </a>
               <a
                 className="hover:opacity-65 transition-opacity"
-                href="https://www.linkedin.com/in/demandwork"
+                href="https://www.linkedin.com/in/adekunle-rasheed"
                 rel="noreferrer"
                 target="_blank"
               >

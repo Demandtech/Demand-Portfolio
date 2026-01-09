@@ -45,6 +45,8 @@ export default function Hero() {
                   className="flex items-center"
                   download="Rasheed CV"
                   href="/assets/pdf/myresume.pdf"
+                  rel="noreferral"
+                  target="_blank"
                 >
                   <span className="text-bgprimary">Download Resume </span>
                   <span className="h-[14px] w-[14px] ml-4 overflow-hidden">
