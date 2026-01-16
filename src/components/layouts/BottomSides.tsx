@@ -84,7 +84,7 @@ function BottomSides() {
             <a
               className="font-comic text-accent text-xl vertical-text"
               download="Rasheed CV"
-              href="/assets/pdf/myresume.pdf"
+              href="/assets/pdf/rasheed_adekunle_cv.pdf"
               // rel="noreferrer"
               // target="_blank"
             >

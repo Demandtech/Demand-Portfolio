@@ -176,7 +176,7 @@ function Aside({
               <a
                 aria-label="Download Rasheed Adekunle's resume as a PDF"
                 className="capitalize"
-                href="/assets/pdf/myresume.pdf"
+                href="/assets/pdf/rasheed_adekunle_cv.pdf"
               >
                 My Resume
               </a>
