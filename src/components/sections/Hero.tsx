@@ -44,7 +44,7 @@ export default function Hero() {
                   aria-label="Download Rasheed Adekunle's resume as a PDF"
                   className="flex items-center"
                   download="Rasheed CV"
-                  href="/assets/pdf/myresume.pdf"
+                  href="/assets/pdf/rasheed_adekunle_cv.pdf"
                   rel="noreferral"
                   target="_blank"
                 >
